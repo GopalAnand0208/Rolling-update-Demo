@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
       - name: my-app
-        image: myapp:1.0.0  # myapp:1.0.1
+        image: myapp:1.0.1  # myapp:1.0.1
         ports:
         - containerPort: 80
         resources:

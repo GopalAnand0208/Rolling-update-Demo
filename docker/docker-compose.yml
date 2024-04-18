@@ -2,11 +2,20 @@ version: '3.7'
 
 services:
 
-  myapp:
+  myapp1:
     container_name: myapp
-    image: myapp:1.0.0 # myapp:1.0.1
+    image: myapp:1.0.0
     build:
-      context: ./
+      context: ./myappv1
+      dockerfile: dockerfile
+    ports:
+     - 8080:80
+  
+  myapp2:
+    container_name: myapp
+    image: myapp:1.0.1
+    build:
+      context: ./myappv2
       dockerfile: dockerfile
     ports:
      - 8080:80
