@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app
+  labels:
+    app: my-app
+spec:
+  replicas: 4
+  minReadySeconds: 1 # Default 0
+  progressDeadlineSeconds: 60 # Default 600s
+  revisionHistoryLimit: 5  #Default 10
+  strategy:
+    type: RollingUpdate # This is the default
+    rollingUpdate:
+      maxSurge: 1  #Default 25%
+      maxUnavailable: 1  # Default 25%
+  selector:
+    matchLabels:
+      app: my-app
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      containers:
+      - name: my-app
+        image: myapp:1.0.0  # myapp:1.0.1
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            memory: "128Mi" #128 MB
+            cpu: "200m" #200 millicpu (.2 cpu or 20% of the cpu)
